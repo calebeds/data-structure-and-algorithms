@@ -1,6 +1,6 @@
 package calebeoliveira.me.bigo;
 
-public class Compress {
+public class QuadraticTime {
 
     public static void main(String[] args) {
         String[] boxes = {"a", "b", "c", "d", "e"};
