@@ -4,8 +4,8 @@ public class Compress {
 
     public static void main(String[] args) {
         String[] boxes = {"a", "b", "c", "d", "e"};
-        logAllPairsOfArray(boxes);
-
+//        logAllPairsOfArray(boxes);
+        printAllNumbersThenAllPairSums(new int[]{1, 2, 3, 4});
     }
 
     public static void compressBoxesTwice(String[] boxes, String[] boxes2) {
@@ -27,4 +27,17 @@ public class Compress {
     } // O(n^2) - Quadratic Time
 
 
+    public static void printAllNumbersThenAllPairSums(int[] numbers) {
+        System.out.println("These are the numbers: ");
+        for (int number : numbers) {
+            System.out.println(number);
+        }
+
+        System.out.println("And these are their sums: ");
+        for (int number : numbers) {
+            for (int number2 : numbers) {
+                System.out.println(number + number2);
+            }
+        }
+    } //O(n + n^2) => O(n^2)
 }
