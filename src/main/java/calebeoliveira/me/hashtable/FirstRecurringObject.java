@@ -6,16 +6,22 @@ import java.util.HashSet;
 public class FirstRecurringObject {
     public static Object getFirstRecurringObject(Object[] inputArray) {
 
+        int diff = inputArray.length;
+        int index = 0;
         for (int i = 0; i < inputArray.length; i++) {
             for (int j = i + 1; j < inputArray.length; j++) {
-                if(inputArray[i].equals(inputArray[j])) {
-                    return inputArray[i];
+                if(inputArray[i].equals(inputArray[j]) && (j - i) < diff) {
+                    diff = j - i;
+                    index = i;
                 }
+            }
+            if(i == inputArray.length - 1 && diff != inputArray.length) {
+                return inputArray[index];
             }
         }
 
         return null;
-    }
+    } //O(n^2)
 
     public static Object getFirstRecurringObjectBetter(Object[] inputArray) {
         HashSet<Object> map = new HashSet<>();
@@ -27,9 +33,10 @@ public class FirstRecurringObject {
             }
         }
         return null;
-    }
+    }//O(n)
 
-    public static Object getFirstRecurringObjectBetter2(Object[] inputArray) {
+    //Bad solution
+    public static Object getFirstRecurringObjectHashTableButNotGood(Object[] inputArray) {
         HashSet<Object> map = new HashSet<>(Arrays.asList(inputArray));
         for (Object object: inputArray) {
             if(map.contains(object)) {
@@ -49,8 +56,8 @@ public class FirstRecurringObject {
         System.out.println("First recurring character better: " + getFirstRecurringObjectBetter(new Integer[]{2, 4, 3, 5}));
 
 
-        System.out.println("First recurring character better: " + getFirstRecurringObjectBetter2(new Integer[]{2, 5, 1, 2, 3, 5}));
-        System.out.println("First recurring character better: " + getFirstRecurringObjectBetter2(new Integer[]{2, 1, 1, 2, 3, 5}));
-        System.out.println("First recurring character better: " + getFirstRecurringObjectBetter2(new Integer[]{2, 4, 3, 5}));
+        System.out.println("First recurring character better: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 5, 1, 2, 3, 5}));
+        System.out.println("First recurring character better: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 1, 1, 2, 3, 5}));
+        System.out.println("First recurring character better: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 4, 3, 5}));
     }
 }
