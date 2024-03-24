@@ -1,4 +1,4 @@
-package calebeoliveira.me.hashmap;
+package calebeoliveira.me.hashtable;
 
 import java.util.ArrayList;
 import java.util.List;

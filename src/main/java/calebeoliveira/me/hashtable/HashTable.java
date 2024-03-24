@@ -1,4 +1,4 @@
-package calebeoliveira.me.hashmap;
+package calebeoliveira.me.hashtable;
 
 public class HashTable {
     Object[][] data;
