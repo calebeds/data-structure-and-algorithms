@@ -56,8 +56,8 @@ public class FirstRecurringObject {
         System.out.println("First recurring character better: " + getFirstRecurringObjectBetter(new Integer[]{2, 4, 3, 5}));
 
 
-        System.out.println("First recurring character better: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 5, 1, 2, 3, 5}));
-        System.out.println("First recurring character better: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 1, 1, 2, 3, 5}));
-        System.out.println("First recurring character better: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 4, 3, 5}));
+        System.out.println("First recurring character not so good: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 5, 1, 2, 3, 5}));
+        System.out.println("First recurring character not so good: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 1, 1, 2, 3, 5}));
+        System.out.println("First recurring character not so good: " + getFirstRecurringObjectHashTableButNotGood(new Integer[]{2, 4, 3, 5}));
     }
 }
