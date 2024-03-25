@@ -78,16 +78,8 @@ public class SinglyLinkedList {
         }
 
         SinglyLinkedNode leader = this.traverseToIndex(index - 1);
-
-        if(index == length - 1) {
-            leader.setNext(null);
-            this.length--;
-            return;
-        }
-
-        SinglyLinkedNode nodeAfterIndex = this.traverseToIndex(index + 1);
-
-        leader.setNext(nodeAfterIndex);
+        SinglyLinkedNode nodeToRemove = leader.getNext();
+        leader.setNext(nodeToRemove.getNext());
         this.length--;
     }
 
