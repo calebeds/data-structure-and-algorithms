@@ -83,6 +83,25 @@ public class SinglyLinkedList {
         this.length--;
     }
 
+    public void reverse() {
+        if(length == 1) {
+            return;
+        }
+
+        SinglyLinkedNode first = this.head;
+        this.tail = this.head;
+        SinglyLinkedNode second = first.getNext();
+        while (second != null) {
+            SinglyLinkedNode temp = second.getNext();
+            second.setNext(first);
+            first = second;
+            second = temp;
+        }
+
+        this.head.setNext(null);
+        this.head = first;
+    }
+
     private SinglyLinkedNode traverseToIndex(int index) {
         index = this.wrapIndex(index);
         SinglyLinkedNode currentNode = head;
@@ -130,7 +149,10 @@ public class SinglyLinkedList {
         singlyLinkedList.insert(1, 7);
         singlyLinkedList.printList();
 
-        singlyLinkedList.remove(4);
+        singlyLinkedList.remove(2);
+        singlyLinkedList.printList();
+
+        singlyLinkedList.reverse();
         singlyLinkedList.printList();
     }
 
