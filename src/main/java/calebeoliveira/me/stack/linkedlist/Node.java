@@ -1,4 +1,4 @@
-package calebeoliveira.me.stack;
+package calebeoliveira.me.stack.linkedlist;
 
 public class Node {
     private String value;
