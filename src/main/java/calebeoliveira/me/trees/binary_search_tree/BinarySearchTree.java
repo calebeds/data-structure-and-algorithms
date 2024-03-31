@@ -36,7 +36,7 @@ public class BinarySearchTree {
 
 
 
-    public boolean lookup(int value) {
+    public BstNode lookup(int value) {
         BstNode currentNode = this.root;
         while (currentNode != null) {
             if(value > currentNode.getValue()) {
@@ -44,10 +44,10 @@ public class BinarySearchTree {
             } else if (value < currentNode.getValue()){
                 currentNode = currentNode.getLeft();
             } else {
-                return true;
+                return currentNode;
             }
         }
-        return false;
+        return null;
     }
 
     int count;
@@ -69,6 +69,50 @@ public class BinarySearchTree {
             printTree(node.getRight());
         }
         count--;
+    }
+
+    public void remove(int value) {
+        if(this.root == null) {
+            return;
+        }
+        BstNode nodeToRemove = this.root;
+        BstNode parentNode = null;
+
+        while (nodeToRemove.getValue() != value) { //searching for the node to remove and its parent
+            parentNode = nodeToRemove;
+            if(value < nodeToRemove.getValue()) {
+                nodeToRemove = nodeToRemove.getLeft();
+            } else if (value > nodeToRemove.getValue()) {
+                nodeToRemove = nodeToRemove.getRight();
+            }
+        }
+
+        BstNode replacementNode = null;
+        if(nodeToRemove.getRight() != null) { //We have a right node
+            replacementNode = nodeToRemove.getRight();
+            if(replacementNode.getLeft() == null) {//We don't have a left node
+                replacementNode.setLeft(nodeToRemove.getLeft());
+            } else { //we have a left node, let's find the leftmost
+                BstNode replacementParentNode = nodeToRemove;
+                while (replacementNode.getLeft() != null) {
+                    replacementParentNode = replacementNode;
+                    replacementNode = replacementNode.getLeft();
+                }
+                replacementParentNode.setLeft(null);
+                replacementNode.setLeft(nodeToRemove.getLeft());
+                replacementNode.setRight(nodeToRemove.getRight());
+            }
+        } else if (nodeToRemove.getLeft() != null) { //we have a left node
+            replacementNode = nodeToRemove.getLeft();
+        }
+
+        if(parentNode == null) {
+            root = replacementNode;
+        } else if (parentNode.getLeft() == nodeToRemove) { //We are left child
+            parentNode.setLeft(replacementNode);
+        } else { //We are right child
+            parentNode.setRight(replacementNode);
+        }
     }
 
     @Override
@@ -99,5 +143,8 @@ public class BinarySearchTree {
 
         System.out.println(binarySearchTree.lookup(20));
         System.out.println(binarySearchTree.lookup(11));
+        binarySearchTree.remove(4);
+        binarySearchTree.printTree();
+
     }
 }
