@@ -50,6 +50,27 @@ public class BinarySearchTree {
         return false;
     }
 
+    int count;
+    public void printTree() {
+        count = 0;
+        printTree(root);
+    }
+
+    public void printTree(BstNode node) {
+        System.out.print(node.getValue());
+        System.out.println();
+        count++;
+        if(node.getLeft() != null) {
+            System.out.print("\t".repeat(Math.max(0, count)) + "Left: ");
+            printTree(node.getLeft());
+        }
+        if(node.getRight() != null) {
+            System.out.print("\t".repeat(Math.max(0, count)) + "Right: ");
+            printTree(node.getRight());
+        }
+        count--;
+    }
+
     @Override
     public String toString() {
         return "BinarySearchTree{" +
@@ -61,26 +82,20 @@ public class BinarySearchTree {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
 
         binarySearchTree.insert(9);
-        System.out.println(binarySearchTree);
 
         binarySearchTree.insert(4);
-        System.out.println(binarySearchTree);
 
         binarySearchTree.insert(6);
-        System.out.println(binarySearchTree);
 
         binarySearchTree.insert(20);
-        System.out.println(binarySearchTree);
 
         binarySearchTree.insert(170);
-        System.out.println(binarySearchTree);
 
         binarySearchTree.insert(15);
-        System.out.println(binarySearchTree);
-
 
         binarySearchTree.insert(1);
-        System.out.println(binarySearchTree);
+
+        binarySearchTree.printTree();
 
         System.out.println(binarySearchTree.lookup(20));
         System.out.println(binarySearchTree.lookup(11));
