@@ -37,15 +37,13 @@ public class BinarySearchTree {
 
 
     public boolean lookup(int value) {
-        BstNode holdingPointer = this.root;
-        while (holdingPointer != null) {
-            if(value > holdingPointer.getValue()) {
-                holdingPointer = holdingPointer.getRight();
-            } else if (value < holdingPointer.getValue()){
-                holdingPointer = holdingPointer.getLeft();
-            }
-
-            if(holdingPointer != null && holdingPointer.getValue() == value) {
+        BstNode currentNode = this.root;
+        while (currentNode != null) {
+            if(value > currentNode.getValue()) {
+                currentNode = currentNode.getRight();
+            } else if (value < currentNode.getValue()){
+                currentNode = currentNode.getLeft();
+            } else {
                 return true;
             }
         }
@@ -68,8 +66,18 @@ public class BinarySearchTree {
         binarySearchTree.insert(4);
         System.out.println(binarySearchTree);
 
+        binarySearchTree.insert(6);
+        System.out.println(binarySearchTree);
+
         binarySearchTree.insert(20);
         System.out.println(binarySearchTree);
+
+        binarySearchTree.insert(170);
+        System.out.println(binarySearchTree);
+
+        binarySearchTree.insert(15);
+        System.out.println(binarySearchTree);
+
 
         binarySearchTree.insert(1);
         System.out.println(binarySearchTree);
