@@ -12,6 +12,8 @@ public class SelectionSort {
             int temp = array[i];
             for (int j = i + 1; j < length; j++) {
                    if(array[j] < array[min]) {
+                       // update mininum if current is lower
+                       // that what we had previously
                        min = j;
                    }
             }
