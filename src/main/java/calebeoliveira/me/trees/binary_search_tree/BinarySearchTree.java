@@ -141,6 +141,29 @@ public class BinarySearchTree {
         return list;
     }
 
+    public List<Integer> breathFirstSearchRecursively() {
+        Queue<BstNode> queue = new LinkedList<>();
+        queue.add(root);
+        return breathFirstSearchRecursively(queue, new ArrayList<>());
+    }
+
+    private List<Integer> breathFirstSearchRecursively(Queue<BstNode> queue, List<Integer> list) {
+        if(queue.isEmpty()) {
+            return list;
+        }
+
+        BstNode currentNode = queue.poll();
+        list.add(currentNode.getValue());
+        if(currentNode.getLeft() != null) {
+            queue.add(currentNode.getLeft());
+        }
+
+        if(currentNode.getRight() != null) {
+            queue.add(currentNode.getRight());
+        }
+        return breathFirstSearchRecursively(queue, list);
+    }
+
     @Override
     public String toString() {
         return "BinarySearchTree{" +
@@ -173,6 +196,6 @@ public class BinarySearchTree {
         binarySearchTree.printTree();
 
         System.out.println("Breath first search: " + binarySearchTree.breathFirstSearchIteratively());
-
+        System.out.println("Breath first search recursively " + binarySearchTree.breathFirstSearchRecursively());
     }
 }
