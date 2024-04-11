@@ -1,5 +1,10 @@
 package calebeoliveira.me.trees.binary_search_tree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinarySearchTree {
     private BstNode root;
 
@@ -115,6 +120,27 @@ public class BinarySearchTree {
         }
     }
 
+    public List<Integer> breathFirstSearchIteratively() {
+        BstNode currentNode  = root;
+        List<Integer> list = new ArrayList<>();
+        Queue<BstNode> queue = new LinkedList<>();
+        queue.add(currentNode);
+
+        while(!queue.isEmpty()) {
+            currentNode = queue.poll();
+            list.add(currentNode.getValue());
+            if(currentNode.getLeft() != null) {
+                queue.add(currentNode.getLeft());
+            }
+
+            if(currentNode.getRight() != null) {
+                queue.add(currentNode.getRight());
+            }
+        }
+
+        return list;
+    }
+
     @Override
     public String toString() {
         return "BinarySearchTree{" +
@@ -145,6 +171,8 @@ public class BinarySearchTree {
         System.out.println(binarySearchTree.lookup(11));
         binarySearchTree.remove(4);
         binarySearchTree.printTree();
+
+        System.out.println("Breath first search: " + binarySearchTree.breathFirstSearchIteratively());
 
     }
 }
