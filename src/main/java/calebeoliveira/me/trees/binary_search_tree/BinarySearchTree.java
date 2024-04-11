@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Queue;
 
 public class BinarySearchTree {
+    enum SearchType {
+        IN_ORDER,
+        PRE_ORDER,
+        POST_ORDER
+    }
     private BstNode root;
 
     public BinarySearchTree() {
@@ -147,6 +152,30 @@ public class BinarySearchTree {
         return breathFirstSearchRecursively(queue, new ArrayList<>());
     }
 
+    public List<Integer> depthFirstSearchInOrder(SearchType searchType) {
+        return depthFirstSearchInOrder(root, new ArrayList<>(), searchType);
+    }
+
+    private List<Integer> depthFirstSearchInOrder(BstNode node, ArrayList<Integer> list, SearchType searchType) {
+        if (searchType == SearchType.PRE_ORDER) {
+            list.add(node.getValue());
+        }
+        if(node.getLeft() != null) {
+            depthFirstSearchInOrder(node.getLeft(), list, searchType);
+        }
+        if(searchType == SearchType.IN_ORDER) {
+            list.add(node.getValue());
+        }
+        if(node.getRight() != null) {
+            depthFirstSearchInOrder(node.getRight(), list, searchType);
+        }
+        if(searchType == SearchType.POST_ORDER) {
+            list.add(node.getValue());
+        }
+
+        return list;
+    }
+
     private List<Integer> breathFirstSearchRecursively(Queue<BstNode> queue, List<Integer> list) {
         if(queue.isEmpty()) {
             return list;
@@ -197,5 +226,8 @@ public class BinarySearchTree {
 
         System.out.println("Breath first search: " + binarySearchTree.breathFirstSearchIteratively());
         System.out.println("Breath first search recursively " + binarySearchTree.breathFirstSearchRecursively());
+        System.out.println("Depth first search - in order" + binarySearchTree.depthFirstSearchInOrder(SearchType.IN_ORDER));
+        System.out.println("Depth first search - pre order" + binarySearchTree.depthFirstSearchInOrder(SearchType.PRE_ORDER));
+        System.out.println("Depth first search - post order" + binarySearchTree.depthFirstSearchInOrder(SearchType.POST_ORDER));
     }
 }
